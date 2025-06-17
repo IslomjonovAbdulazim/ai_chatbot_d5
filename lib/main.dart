@@ -10,7 +10,6 @@ void main() {
   );
 }
 
-
 class AiChatbotApp extends StatelessWidget {
   const AiChatbotApp({super.key});
 
