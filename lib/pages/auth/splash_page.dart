@@ -1,0 +1,32 @@
+import 'package:ai_chatbot_d5/pages/auth/onboarding_page.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+class SplashPage extends StatefulWidget {
+  const SplashPage({super.key});
+
+  @override
+  State<SplashPage> createState() => _SplashPageState();
+}
+
+class _SplashPageState extends State<SplashPage> {
+  @override
+  void initState() {
+    load();
+    super.initState();
+  }
+
+  void load() async {
+    // Logic ...
+    await Future.delayed(Duration(milliseconds: 300));
+
+    if (true) {
+      Get.off(OnboardingPage());
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold();
+  }
+}

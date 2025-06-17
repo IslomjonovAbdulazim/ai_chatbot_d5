@@ -2,7 +2,10 @@ import 'package:device_preview/device_preview.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
-void main() {
+import 'pages/auth/splash_page.dart';
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(
     DevicePreview(
       builder: (context) => AiChatbotApp(),
@@ -17,6 +20,7 @@ class AiChatbotApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
+      home: SplashPage(),
     );
   }
 }
