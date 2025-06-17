@@ -8,6 +8,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   runApp(
     DevicePreview(
+      enabled: false,
       builder: (context) => AiChatbotApp(),
     ),
   );
