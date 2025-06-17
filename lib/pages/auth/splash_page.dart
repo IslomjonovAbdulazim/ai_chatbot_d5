@@ -20,10 +20,10 @@ class _SplashPageState extends State<SplashPage> {
 
   void load() async {
     // Logic ...
-    await Future.delayed(Duration(milliseconds: 300));
+    await Future.delayed(Duration(milliseconds: 500));
 
-    if (false) {
-      Get.off(OnboardingPage());
+    if (true) {
+      Get.off(OnboardingPage(), transition: Transition.fade);
     }
   }
 
