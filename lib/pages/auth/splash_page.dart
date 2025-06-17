@@ -1,4 +1,6 @@
 import 'package:ai_chatbot_d5/pages/auth/onboarding_page.dart';
+import 'package:ai_chatbot_d5/utils/app_colors.dart';
+import 'package:ai_chatbot_d5/widgets/text_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -20,13 +22,31 @@ class _SplashPageState extends State<SplashPage> {
     // Logic ...
     await Future.delayed(Duration(milliseconds: 300));
 
-    if (true) {
+    if (false) {
       Get.off(OnboardingPage());
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return Scaffold(
+      backgroundColor: AppColors.background,
+      body: Center(
+        child: Image.asset(
+          "assets/logo.png",
+          width: 150,
+        ),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButton: SafeArea(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            TitleText("AIsha"),
+            BodyText("by D5 Group"),
+          ],
+        ),
+      ),
+    );
   }
 }
