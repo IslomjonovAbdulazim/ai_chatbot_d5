@@ -20,6 +20,7 @@ class _SplashPageState extends State<SplashPage> {
     super.initState();
   }
 
+
   void load() async {
     // Logic ...
     await Future.delayed(Duration(milliseconds: 500));
