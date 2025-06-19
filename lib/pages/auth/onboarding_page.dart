@@ -1,6 +1,5 @@
 import 'package:ai_chatbot_d5/utils/app_colors.dart';
 import 'package:ai_chatbot_d5/widgets/text_widget.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class OnboardingPage extends StatefulWidget {
@@ -37,6 +36,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
           children: [
             Expanded(
               child: PageView.builder(
+                controller: controller,
                 itemCount: images.length,
                 itemBuilder: (context, index) {
                   return Padding(
@@ -52,6 +52,18 @@ class _OnboardingPageState extends State<OnboardingPage> {
                 },
               ),
             ),
+            Container(
+              padding: EdgeInsets.all(20),
+              decoration: BoxDecoration(
+                color: Color(0xff232627),
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [],
+              ),
+            ),
+            SizedBox(height: 20),
           ],
         ),
       ),
