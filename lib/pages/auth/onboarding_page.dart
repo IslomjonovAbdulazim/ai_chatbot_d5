@@ -1,4 +1,5 @@
 import 'package:ai_chatbot_d5/utils/app_colors.dart';
+import 'package:ai_chatbot_d5/widgets/text_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -43,24 +44,25 @@ class _OnboardingPageState extends State<OnboardingPage> {
       body: SafeArea(
         child: Column(
           children: [
-            SizedBox(
-              height: 480,
+            Expanded(
               child: PageView.builder(
-                controller: controller,
                 itemCount: images.length,
                 itemBuilder: (context, index) {
                   return Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 12),
-                    child: Image.asset(images[index]),
+                    padding: const EdgeInsets.symmetric(horizontal: 30),
+                    child: Column(
+                      children: [
+                        Image.asset(images[index]),
+                        TitleText(titles[index]),
+                      ],
+                    ),
                   );
                 },
               ),
             ),
-            CircleAvatar(backgroundColor: Colors.white, radius: 10),
           ],
         ),
       ),
     );
   }
 }
-
