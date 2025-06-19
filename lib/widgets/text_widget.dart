@@ -13,8 +13,9 @@ class TitleText extends StatelessWidget {
       style: GoogleFonts.poppins(
         fontSize: 35,
         color: Colors.white,
-        fontWeight: FontWeight.w600,
+        fontWeight: FontWeight.w700,
       ),
+      textAlign: TextAlign.center,
     );
   }
 }
@@ -33,6 +34,7 @@ class BodyText extends StatelessWidget {
         fontSize: 16,
         fontWeight: FontWeight.w300,
       ),
+      textAlign: TextAlign.center,
     );
   }
 }
