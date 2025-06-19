@@ -38,3 +38,22 @@ class BodyText extends StatelessWidget {
     );
   }
 }
+
+class NormalText extends StatelessWidget {
+  final String text;
+
+  const NormalText(this.text);
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      text,
+      style: GoogleFonts.poppins(
+        color: Colors.white,
+        fontSize: 16,
+        fontWeight: FontWeight.w500,
+      ),
+      textAlign: TextAlign.center,
+    );
+  }
+}
