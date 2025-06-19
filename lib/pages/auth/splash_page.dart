@@ -20,12 +20,11 @@ class _SplashPageState extends State<SplashPage> {
     super.initState();
   }
 
-
   void load() async {
     // Logic ...
     await Future.delayed(Duration(milliseconds: 500));
 
-    if (false) {
+    if (true) {
       Get.off(OnboardingPage(), transition: Transition.fade);
     }
   }
@@ -53,3 +52,4 @@ class _SplashPageState extends State<SplashPage> {
     );
   }
 }
+
