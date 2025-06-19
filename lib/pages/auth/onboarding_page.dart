@@ -32,15 +32,6 @@ class _OnboardingPageState extends State<OnboardingPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.background,
-      appBar: AppBar(
-        backgroundColor: AppColors.background,
-        actions: [
-          CupertinoButton(
-            onPressed: () {},
-            child: Text("Skip"),
-          ),
-        ],
-      ),
       body: SafeArea(
         child: Column(
           children: [
@@ -49,11 +40,12 @@ class _OnboardingPageState extends State<OnboardingPage> {
                 itemCount: images.length,
                 itemBuilder: (context, index) {
                   return Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 30),
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
                     child: Column(
                       children: [
                         Image.asset(images[index]),
                         TitleText(titles[index]),
+                        BodyText(bodies[index]),
                       ],
                     ),
                   );
