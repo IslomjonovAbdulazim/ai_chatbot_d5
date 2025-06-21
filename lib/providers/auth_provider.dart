@@ -1,6 +1,7 @@
-`import 'dart:convert';
+import 'dart:convert';
 
 import 'package:ai_chatbot_d5/models/auth_models.dart';
+import 'package:ai_chatbot_d5/pages/auth/auth_page.dart';
 import 'package:ai_chatbot_d5/pages/home/home_page.dart';
 import 'package:ai_chatbot_d5/utils/api_constants.dart';
 import 'package:ai_chatbot_d5/utils/google_service.dart';
@@ -49,7 +50,20 @@ class AuthProvider {
   }
 
   static Future<bool> navigate() async {
-
+    final uri = Uri.parse(ApiConstants.verify);
+    final db = await SharedPreferences.getInstance();
+    final token = db.getString("token");
+    if (token == null) {
+      Get.offAll(AuthPage());
+    } else {
+      final response = await http.get(
+        uri,
+        headers: {
+          "Authorization": "Bearer $token",
+          "Content-Type": "application/json",
+        },
+      );
+      if (response.statusCode == 200) {}
+    }
   }
 }
-`
