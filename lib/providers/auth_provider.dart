@@ -14,13 +14,19 @@ class AuthProvider {
     } else {
       final uri = Uri.parse(ApiConstants.google);
       final model = AuthRequestModel(token: user!.idToken!);
-      final response = http.post(
+      final response = await http.post(
         uri,
         headers: {
           "Content-Type":"application/json",
         },
         body: jsonEncode(model.toJson()),
       );
+      final body = jsonDecode(response.body);
+      if (response.statusCode == 200) {
+
+      } else {
+
+      }
     }
   }
 }
