@@ -45,19 +45,6 @@ class _AuthPageState extends State<AuthPage> {
                       },
                       text: "Sign In With Google",
                     ),
-              SizedBox(height: 10),
-              Divider(),
-              NormalText("Email: ${user?.email}"),
-              NormalText("ID: ${user?.id}"),
-              NormalText("Name: ${user?.name}"),
-              SizedBox(height: 10),
-              CircleAvatar(
-                foregroundImage: user?.avatarUrl != null
-                    ? NetworkImage(user!.avatarUrl!)
-                    : null,
-                radius: 50,
-                backgroundColor: Colors.white,
-              ),
             ],
           ),
         ),
