@@ -1,3 +1,5 @@
+import 'package:ai_chatbot_d5/providers/auth_provider.dart';
+import 'package:ai_chatbot_d5/widgets/button_widget.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -12,11 +14,22 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Text(
-          "Salom",
-          style: TextStyle(
-            fontSize: 40,
-          ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              "Salom",
+              style: TextStyle(
+                fontSize: 40,
+              ),
+            ),
+            ButtonWidget(
+              text: "Logout",
+              onTap: () {
+                AuthProvider.logout();
+              },
+            ),
+          ],
         ),
       ),
     );

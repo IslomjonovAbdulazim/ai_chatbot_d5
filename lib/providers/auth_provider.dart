@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:ai_chatbot_d5/models/auth_models.dart';
 import 'package:ai_chatbot_d5/pages/auth/auth_page.dart';
+import 'package:ai_chatbot_d5/pages/auth/onboarding_page.dart';
 import 'package:ai_chatbot_d5/pages/home/home_page.dart';
 import 'package:ai_chatbot_d5/utils/api_constants.dart';
 import 'package:ai_chatbot_d5/utils/google_service.dart';
@@ -49,12 +50,12 @@ class AuthProvider {
     }
   }
 
-  static Future<bool> navigate() async {
+  static Future<void> navigate() async {
     final uri = Uri.parse(ApiConstants.verify);
     final db = await SharedPreferences.getInstance();
     final token = db.getString("token");
     if (token == null) {
-      Get.offAll(AuthPage());
+      Get.offAll(OnboardingPage());
     } else {
       final response = await http.get(
         uri,
@@ -63,7 +64,18 @@ class AuthProvider {
           "Content-Type": "application/json",
         },
       );
-      if (response.statusCode == 200) {}
+      if (response.statusCode != 200) {
+        SnackbarWidget.error("Your token is invalid", "Please log in again!");
+        Get.offAll(AuthPage());
+      } else {
+        Get.offAll(HomePage());
+      }
     }
+  }
+
+  static Future<void> logout() async {
+    final db = await SharedPreferences.getInstance();
+    await db.clear();
+    Get.offAll(OnboardingPage());
   }
 }

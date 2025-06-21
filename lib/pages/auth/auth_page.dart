@@ -1,3 +1,4 @@
+import 'package:ai_chatbot_d5/providers/auth_provider.dart';
 import 'package:ai_chatbot_d5/utils/app_colors.dart';
 import 'package:ai_chatbot_d5/utils/google_service.dart';
 import 'package:ai_chatbot_d5/widgets/button_widget.dart';
@@ -39,7 +40,7 @@ class _AuthPageState extends State<AuthPage> {
                       onTap: () async {
                         isLoading = true;
                         setState(() {});
-                        user = await GoogleService().signInWithGoogle();
+                        await AuthProvider.signIn();
                         isLoading = false;
                         setState(() {});
                       },

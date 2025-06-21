@@ -1,4 +1,5 @@
 import 'package:ai_chatbot_d5/pages/auth/onboarding_page.dart';
+import 'package:ai_chatbot_d5/providers/auth_provider.dart';
 import 'package:ai_chatbot_d5/utils/app_colors.dart';
 import 'package:ai_chatbot_d5/widgets/text_widget.dart';
 import 'package:flutter/cupertino.dart';
@@ -23,10 +24,7 @@ class _SplashPageState extends State<SplashPage> {
   void load() async {
     // Logic ...
     await Future.delayed(Duration(milliseconds: 500));
-
-    if (true) {
-      Get.off(OnboardingPage(), transition: Transition.fade);
-    }
+    await AuthProvider.navigate();
   }
 
   @override
