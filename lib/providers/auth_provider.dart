@@ -1,3 +1,6 @@
+import 'dart:convert';
+
+import 'package:ai_chatbot_d5/models/auth_models.dart';
 import 'package:ai_chatbot_d5/utils/api_constants.dart';
 import 'package:ai_chatbot_d5/utils/google_service.dart';
 import 'package:ai_chatbot_d5/widgets/snackbar_widget.dart';
@@ -10,6 +13,14 @@ class AuthProvider {
       SnackbarWidget.error("Cannot Sign In", "Something went wrong");
     } else {
       final uri = Uri.parse(ApiConstants.google);
+      final model = AuthRequestModel(token: user!.idToken!);
+      final response = http.post(
+        uri,
+        headers: {
+          "Content-Type":"application/json",
+        },
+        body: jsonEncode(model.toJson()),
+      );
     }
   }
 }
