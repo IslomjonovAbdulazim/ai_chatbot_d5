@@ -4,6 +4,7 @@ import 'package:ai_chatbot_d5/providers/chat_provider.dart';
 import 'package:ai_chatbot_d5/widgets/text_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:get/get.dart';
 
 class HomePage extends StatefulWidget {
@@ -79,32 +80,41 @@ class _HomePageState extends State<HomePage> {
                 itemCount: chats.length,
                 itemBuilder: (context, index) {
                   final model = chats[index];
-                  return Padding(
-                    padding: EdgeInsets.symmetric(vertical: 4),
-                    child: CupertinoButton(
-                      color: Color(0xff232627),
-                      padding: EdgeInsets.symmetric(
-                        horizontal: 16,
-                        vertical: 8,
-                      ),
-                      onPressed: () async {
-                        await Get.to(ChatPage());
-                        load();
-                      },
-                      child: Row(
-                        children: [
-                          Expanded(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                NormalText(model.title),
-                                DateText(model.createdAt),
-                              ],
+                  return Slidable(
+                    endActionPane: ActionPane(
+                      extentRatio: 0.2,
+                      motion: ScrollMotion(),
+                      children: [
+                        NormalText("A"),
+                      ],
+                    ),
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(vertical: 4),
+                      child: CupertinoButton(
+                        color: Color(0xff232627),
+                        padding: EdgeInsets.symmetric(
+                          horizontal: 16,
+                          vertical: 8,
+                        ),
+                        onPressed: () async {
+                          await Get.to(ChatPage());
+                          load();
+                        },
+                        child: Row(
+                          children: [
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  NormalText(model.title),
+                                  DateText(model.createdAt),
+                                ],
+                              ),
                             ),
-                          ),
-                          SizedBox(width: 5),
-                          TitleText("${model.messageCount}"),
-                        ],
+                            SizedBox(width: 5),
+                            TitleText("${model.messageCount}"),
+                          ],
+                        ),
                       ),
                     ),
                   );
