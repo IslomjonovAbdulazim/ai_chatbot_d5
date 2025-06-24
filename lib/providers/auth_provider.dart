@@ -65,7 +65,7 @@ class AuthProvider {
     final db = await SharedPreferences.getInstance();
     final token = db.getString("token");
     if (token == null) {
-      Get.offAll(OnboardingPage());
+      Get.offAll(OnboardingPage(), transition: Transition.fade);
     } else {
       final response = await http.get(
         uri,
@@ -76,9 +76,9 @@ class AuthProvider {
       );
       if (response.statusCode != 200) {
         SnackbarWidget.error("Your token is invalid", "Please log in again!");
-        Get.offAll(AuthPage());
+        Get.offAll(AuthPage(), transition: Transition.fade);
       } else {
-        Get.offAll(HomePage());
+        Get.offAll(HomePage(), transition: Transition.fade);
       }
     }
   }
