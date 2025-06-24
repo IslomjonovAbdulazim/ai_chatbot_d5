@@ -13,7 +13,17 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthProvider {
   static Future<void> signIn() async {
-    final user = await GoogleService().signInWithGoogle();
+    UserGoogleAccount? user;
+    try {
+      user = await GoogleService().signInWithGoogle();
+    } catch (e) {
+      SnackbarWidget.error(
+        "Something went wrong",
+        "Error with Google Account",
+      );
+      return;
+    }
+
     if (user == null) {
       SnackbarWidget.error("Cannot Sign In", "Something went wrong");
     } else {
