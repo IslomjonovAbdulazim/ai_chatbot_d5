@@ -1,7 +1,10 @@
 import 'package:ai_chatbot_d5/models/chat_model.dart';
+import 'package:ai_chatbot_d5/pages/home/chat_page.dart';
 import 'package:ai_chatbot_d5/providers/chat_provider.dart';
+import 'package:ai_chatbot_d5/widgets/text_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -35,6 +38,34 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         backgroundColor: Color(0xff141718),
         surfaceTintColor: Color(0xff141718),
+        leadingWidth: 100,
+        leading: CupertinoButton(
+          padding: EdgeInsets.zero,
+          onPressed: () {},
+          child: Image.asset("assets/logo.png"),
+        ),
+        centerTitle: true,
+        title: TitleText("AIsha"),
+        actions: [
+          CupertinoButton(
+            padding: EdgeInsets.zero,
+            onPressed: () async {
+              isLoading = true;
+              setState(() {});
+              final res = await ChatProvider.newChat();
+              if (res) {
+                await Get.to(ChatPage());
+              }
+              load();
+            },
+            child: Icon(
+              CupertinoIcons.chat_bubble_2_fill,
+              color: Colors.white,
+              size: 30,
+            ),
+          ),
+          SizedBox(width: 20),
+        ],
       ),
       body: SafeArea(
         child: isLoading
@@ -44,21 +75,35 @@ class _HomePageState extends State<HomePage> {
                 ),
               )
             : ListView.builder(
-                padding: EdgeInsets.symmetric(horizontal: 20),
+                padding: EdgeInsets.symmetric(horizontal: 16),
                 itemCount: chats.length,
                 itemBuilder: (context, index) {
                   final model = chats[index];
                   return Padding(
                     padding: EdgeInsets.symmetric(vertical: 4),
                     child: CupertinoButton(
-                      onPressed: () {},
+                      color: Color(0xff232627),
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 16,
+                        vertical: 8,
+                      ),
+                      onPressed: () async {
+                        await Get.to(ChatPage());
+                        load();
+                      },
                       child: Row(
                         children: [
                           Expanded(
                             child: Column(
-                              children: [],
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                NormalText(model.title),
+                                DateText(model.createdAt),
+                              ],
                             ),
                           ),
+                          SizedBox(width: 5),
+                          TitleText("${model.messageCount}"),
                         ],
                       ),
                     ),
