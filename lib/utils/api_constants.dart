@@ -8,5 +8,5 @@ class ApiConstants {
 
   // chat
   static const chats = "$baseUrl/chats";
-  static const message = "$baseUrl/messages";
+  static String message(String id) => "$baseUrl/chats/$id/messages";
 }
