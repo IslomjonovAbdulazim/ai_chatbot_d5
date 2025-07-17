@@ -64,6 +64,8 @@ class AuthProvider {
     final uri = Uri.parse(ApiConstants.verify);
     final db = await SharedPreferences.getInstance();
     final token = db.getString("token");
+
+    print(token);
     if (token == null) {
       Get.offAll(OnboardingPage(), transition: Transition.fade);
     } else {
@@ -74,6 +76,7 @@ class AuthProvider {
           "Content-Type": "application/json",
         },
       );
+      print(response.request);
       if (response.statusCode != 200) {
         SnackbarWidget.error("Your token is invalid", "Please log in again!");
         Get.offAll(AuthPage(), transition: Transition.fade);

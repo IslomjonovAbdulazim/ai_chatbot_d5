@@ -1,5 +1,5 @@
 class ApiConstants {
-  static const baseUrl = "https://islomjonovabdulazim-ai-chatbot-backend-9834.twc1.net";
+  static const baseUrl = "https://ai-chatbot-backend-k388.onrender.com/api";
 
   // auth
   static const google = "$baseUrl/auth/google";
