@@ -32,7 +32,9 @@ class ChatProvider {
         "Authorization": "Bearer $token",
         "Content-Type": "application/json",
       },
+      body: jsonEncode({}),
     );
+    print(response.request);
     if (response.statusCode == 200) {
       SnackbarWidget.success("New Chat Created", "Successfully");
       return true;
