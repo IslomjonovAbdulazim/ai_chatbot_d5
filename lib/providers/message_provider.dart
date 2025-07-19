@@ -37,6 +37,25 @@ class MessageProvider {
 
   static Future<List<MessageModel>> getAllMessages(String id) async {
     final uri = Uri.parse(ApiConstants.message(id));
-
+    final db = await SharedPreferences.getInstance();
+    final token = db.get("token");
+    final response = await http.get(
+      uri,
+      headers: {
+        "Authorization": "Bearer $token",
+        "Content-Type": "application/json",
+      },
+    );
+    final r = jsonDecode(response.body);
+    if (response.statusCode == 200) {
+      final list = List.from(r);
+      return list.map((json) => MessageModel.fromJson(json)).toList();
+    } else {
+      SnackbarWidget.error(
+        "Something Went Wrong",
+        r["detail"] ?? "Unknown Error",
+      );
+      return [];
+    }
   }
 }

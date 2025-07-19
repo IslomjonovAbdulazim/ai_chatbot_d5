@@ -24,7 +24,7 @@ class ChatProvider {
     return [];
   }
 
-  static Future<bool> newChat() async {
+  static Future<ChatModel?> newChat() async {
     final uri = Uri.parse(ApiConstants.chats);
     final response = await http.post(
       uri,
@@ -34,13 +34,12 @@ class ChatProvider {
       },
       body: jsonEncode({}),
     );
-    print(response.request);
     if (response.statusCode == 200) {
       SnackbarWidget.success("New Chat Created", "Successfully");
-      return true;
+      return ChatModel.fromJson(jsonDecode(response.body));
     }
     SnackbarWidget.error("Cannot start new chat", "Something went wrong");
-    return false;
+    return null;
   }
 
   static Future<bool> deleteChat(String id) async {
