@@ -63,6 +63,7 @@ class _ChatPageState extends State<ChatPage> {
       ),
       body: SafeArea(
         child: ListView.builder(
+          reverse: true,
           itemCount: messages.length,
           itemBuilder: (context, index) {
             final model = messages[index];
