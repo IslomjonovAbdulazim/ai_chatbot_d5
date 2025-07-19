@@ -1,12 +1,13 @@
 import 'dart:convert';
 
-import 'package:ai_chatbot_d5/providers/auth_provider.dart';
+import 'package:ai_chatbot_d5/models/message_model.dart';
 import 'package:ai_chatbot_d5/utils/api_constants.dart';
+import 'package:ai_chatbot_d5/widgets/snackbar_widget.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
 class MessageProvider {
-  static Future<bool> sendMessage(
+  static Future<MessageModel?> sendMessage(
     String content,
     String id,
   ) async {
@@ -22,11 +23,20 @@ class MessageProvider {
         "Content-Type": "application/json",
       },
     );
+    final r = jsonDecode(response.body);
     if (response.statusCode == 200) {
-      return true;
+      return MessageModel.fromJson(r);
     } else {
-      return false;
+      SnackbarWidget.error(
+        "Something Went Wrong",
+        r["detail"] ?? "Unknown Error",
+      );
+      return null;
     }
+  }
+
+  static Future<List<MessageModel>> getAllMessages(String id) async {
+    final uri = Uri.parse(ApiConstants.message(id));
 
   }
 }
