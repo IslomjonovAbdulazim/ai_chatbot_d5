@@ -54,8 +54,8 @@ class _HomePageState extends State<HomePage> {
               isLoading = true;// pdp_staff
               setState(() {});
               final res = await ChatProvider.newChat();
-              if (res) {
-                await Get.to(ChatPage());
+              if (res != null) {
+                await Get.to(ChatPage(id: res.id, title: res.title,));
               }
               load();
             },
@@ -97,7 +97,7 @@ class _HomePageState extends State<HomePage> {
                           vertical: 8,
                         ),
                         onPressed: () async {
-                          await Get.to(ChatPage());
+                          await Get.to(ChatPage(id: model.id, title: model.title));
                           load();
                         },
                         child: Row(
