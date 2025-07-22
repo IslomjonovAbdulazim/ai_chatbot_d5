@@ -10,6 +10,12 @@ class ProfilePage extends StatefulWidget {
 class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return Scaffold(
+      backgroundColor: Color(0xff141718),
+      appBar: AppBar(
+        backgroundColor: Color(0xff141718),
+        title: Text("Profile"),
+      ),
+    );
   }
 }

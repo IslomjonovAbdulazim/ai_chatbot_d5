@@ -1,5 +1,6 @@
 import 'package:ai_chatbot_d5/models/chat_model.dart';
 import 'package:ai_chatbot_d5/pages/home/chat_page.dart';
+import 'package:ai_chatbot_d5/pages/home/profile_page.dart';
 import 'package:ai_chatbot_d5/providers/chat_provider.dart';
 import 'package:ai_chatbot_d5/widgets/text_widget.dart';
 import 'package:flutter/cupertino.dart';
@@ -42,7 +43,9 @@ class _HomePageState extends State<HomePage> {
         leadingWidth: 100,
         leading: CupertinoButton(
           padding: EdgeInsets.zero,
-          onPressed: () {},
+          onPressed: () {
+            Get.to(ProfilePage());
+          },
           child: Image.asset("assets/logo.png"),
         ),
         centerTitle: true,
@@ -51,11 +54,14 @@ class _HomePageState extends State<HomePage> {
           CupertinoButton(
             padding: EdgeInsets.zero,
             onPressed: () async {
-              isLoading = true;// pdp_staff
+              isLoading = true; // pdp_staff
               setState(() {});
               final res = await ChatProvider.newChat();
               if (res != null) {
-                await Get.to(ChatPage(id: res.id, title: res.title,));
+                await Get.to(ChatPage(
+                  id: res.id,
+                  title: res.title,
+                ));
               }
               load();
             },
@@ -97,7 +103,8 @@ class _HomePageState extends State<HomePage> {
                           vertical: 8,
                         ),
                         onPressed: () async {
-                          await Get.to(ChatPage(id: model.id, title: model.title));
+                          await Get.to(
+                              ChatPage(id: model.id, title: model.title));
                           load();
                         },
                         child: Row(
