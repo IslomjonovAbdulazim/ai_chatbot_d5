@@ -9,5 +9,9 @@ class ApiConstants {
   // chat
   static const chats = "$baseUrl/chats";
   static String message(String id) => "$baseUrl/chats/$id/messages";
+
+  // usage
+  static const usage = "$baseUrl/user/usage";
+  static const chart = "$baseUrl/user/usage/chart";
 }
 
