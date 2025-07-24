@@ -1,10 +1,10 @@
 class ApiConstants {
-  static const baseUrl = "https://aichatbotbackend-production-ef4d.up.railway.app/api";
+  static const baseUrl = "https://cors-anywhere.herokuapp.com/corsdemo/https://aichatbotbackend-production-ef4d.up.railway.app/api";
 
   // auth
   static const google = "$baseUrl/auth/google";
   static const verify = "$baseUrl/auth/verify";
-  static const profile = "$baseUrl/profile";
+  static const profile = "$baseUrl/user/profile";
 
   // chat
   static const chats = "$baseUrl/chats";

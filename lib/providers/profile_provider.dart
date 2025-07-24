@@ -43,7 +43,7 @@ class ProfileProvider {
   }
 
   static Future<List<DailyUsageModel>> daily() async {
-    final uri = Uri.parse(ApiConstants.usage);
+    final uri = Uri.parse(ApiConstants.chart);
     final db = await SharedPreferences.getInstance();
     final token = db.getString("token");
     final response = await http.get(
